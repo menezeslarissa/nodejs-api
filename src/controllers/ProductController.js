@@ -10,7 +10,9 @@ const Product = mongoose.model('Product');
 //ou seja a proxima linha só executa depois de conseguir o registro do bacno dedados
 module.exports = {
     async index(req, res){
-        const products = await Product.paginate({}, {page: 1, limit: 10});
+        //desestruturação recuros do es6
+        const { page = 1 } = req.query; //parametro page do get
+        const products = await Product.paginate({}, {page, limit: 10});
         //retorna a lista no formato json
         return res.json(products);
     },

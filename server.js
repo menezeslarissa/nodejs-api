@@ -1,10 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const requireDir = require('require-dir');
+const cors = require('cors');
 
 //iniciando o app
 const app = express();
 app.use(express.json()); //permite que eu envie dados pra app no formato de json
+app.use(cors);
 //iniciando o database
 mongoose.connect('mongodb://192.168.99.100:27017/nodeapi', { useNewUrlParser: true, useUnifiedTopology: true } );
 requireDir('./src/models')
